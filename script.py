@@ -23,9 +23,9 @@ def main():
 def login(navegador):
   navegador.get("https://www.linkedin.com/home")
   sleep(2)
-  navegador.find_element('xpath', '//*[@id="session_key"]').send_keys('') #Seu email
+  navegador.find_element('xpath', '//*[@id="session_key"]').send_keys('jgabfalcao@gmail.com') #Seu email
   sleep(2)
-  navegador.find_element('xpath', '//*[@id="session_password"]').send_keys('') #Sua senha
+  navegador.find_element('xpath', '//*[@id="session_password"]').send_keys('batatinha') #Sua senha
   sleep(2)
   navegador.find_element('xpath', '//*[@id="main-content"]/section[1]/div/div/form/div[2]/button').click()
   sleep(5)
@@ -37,9 +37,7 @@ def searchTechRecruiters(navegador):
   
   elementos = navegador.find_elements(By.CSS_SELECTOR, 'li.reusable-search__result-container')
   
-  for elemento in elementos:
-    teste = elemento.find_element(By.CSS_SELECTOR, 'div.entity-result__actions entity-result__divider')
-    print(len(teste))
+  print(len(elementos))
     
 if __name__ == "__main__":
    startTime = time.time()
