@@ -2,6 +2,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
 
 from time import sleep
 
@@ -35,9 +36,18 @@ def searchTechRecruiters(navegador):
   navegador.get('https://www.linkedin.com/search/results/people/?geoUrn=%5B%22106057199%22%5D&keywords=Tech%20Recruiter&origin=FACETED_SEARCH&sid=cE%40')
   sleep(5)
   
-  elementos = navegador.find_elements(By.CSS_SELECTOR, 'li.reusable-search__result-container')
+  html = navegador.page_source
   
-  print(len(elementos))
+  teste = BeautifulSoup(html, 'html.parser')
+  
+  teste2 = teste.find('ul', attrs={'class': 'reusable-search__entity-result-list list-style-none'}).find_all('li')
+  
+  print(teste2)
+  
+  
+  # elementos = navegador.find_elements(By.CSS_SELECTOR, 'li.reusable-search__result-container')
+  
+  # print(len(elementos))
     
 if __name__ == "__main__":
    startTime = time.time()
