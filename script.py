@@ -18,9 +18,9 @@ def main():
   
   navegador.get("https://www.linkedin.com/home")
   sleep(2)
-  navegador.find_element('xpath', '//*[@id="session_key"]').send_keys('jgabfalcao@gmail.com') #Seu email
+  navegador.find_element('xpath', '//*[@id="session_key"]').send_keys('') #Seu email
   sleep(2)
-  navegador.find_element('xpath', '//*[@id="session_password"]').send_keys('batatinha') #Sua senha
+  navegador.find_element('xpath', '//*[@id="session_password"]').send_keys('') #Sua senha
   sleep(2)
   navegador.find_element('xpath', '//*[@id="main-content"]/section[1]/div/div/form/div[2]/button').click()
   sleep(5)    
