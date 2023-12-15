@@ -26,6 +26,7 @@ def main():
   sleep(5)    
   
   tempo_limite = 10
+  tempo_limite_pop_UP = 1
   
   for page in range(1,11):
     navegador.get('https://www.linkedin.com/search/results/people/?geoUrn=%5B%22106057199%22%5D&keywords=Tech%20Recruiter&origin=FACETED_SEARCH&page=' + str(page) + '&sid=cE%40')
@@ -47,18 +48,34 @@ def main():
           if(profileButton):
             profileButton.click()
             sleep(0.5)
+            try:
+              WebDriverWait(navegador, tempo_limite_pop_UP).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'label[for="email"]')))
+              popUp = navegador.find_element(By.CSS_SELECTOR, 'label[for="email"]')
+              popUpText = popUp.text
+              
+              print(popUpText)
+              
+              if(popUpText == "Para confirmar que este usuário é seu conhecido, insira o endereço de e-mail do mesmo para se conectar. Você também pode incluir uma nota pessoal. Saiba mais"):
+                popUpClose = navegador.find_element(By.CSS_SELECTOR, 'button[aria-label="Fechar"]')
+                popUpClose.click()
+                
+                continue
+            except:
+              print("Pop-up negativo não encontrado")
+
             popUpRequest = navegador.find_element(By.CSS_SELECTOR, 'button[aria-label="Enviar agora"]')
             if(popUpRequest):
               popUpRequest.click()
             else:
               print("Não encontrou o botão de PopUp")  
+            
           else:
             print("Não encontrou o botão")
         else:
           print("Não encontrou a div") 
       else: 
         print("Não é possível conectar")
-    sleep(10)  
+  
   
 if __name__ == "__main__":
    startTime = time.time()
