@@ -28,7 +28,7 @@ def main():
   tempo_limite = 10
   tempo_limite_pop_UP = 1
   
-  for page in range(1,11):
+  for page in range(21,51):
     navegador.get('https://www.linkedin.com/search/results/people/?geoUrn=%5B%22106057199%22%5D&keywords=Tech%20Recruiter&origin=FACETED_SEARCH&page=' + str(page) + '&sid=cE%40')
     
     WebDriverWait(navegador, tempo_limite).until(EC.visibility_of_element_located((By.CLASS_NAME, 'reusable-search__result-container')))
@@ -66,6 +66,7 @@ def main():
             popUpRequest = navegador.find_element(By.CSS_SELECTOR, 'button[aria-label="Enviar agora"]')
             if(popUpRequest):
               popUpRequest.click()
+              sleep(1)
             else:
               print("Não encontrou o botão de PopUp")  
             
